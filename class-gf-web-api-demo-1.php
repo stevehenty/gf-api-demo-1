@@ -38,9 +38,9 @@ class GF_Web_Api_Demo_1 extends GFAddOn {
 					array( 'query' => 'page=gravityformswebapidemo1' ),
 				),
 				'strings' => array(
-					'root_url'    => site_url() . '/gravityformsapi/',
-					'nonce'       => wp_create_nonce( 'gf_api' ),
-				)
+					'root_url'    => site_url() . '/wp-json/gf/v2/',
+					'nonce'       => wp_create_nonce( 'wp_rest' ),
+				),
 			),
 		);
 

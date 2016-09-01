@@ -12,7 +12,7 @@
 
 
         $('#create_form_button').click(function () {
-            url = apiVars['root_url'] + 'forms?_gf_json_nonce=' + apiVars['nonce'];
+            url = apiVars['root_url'] + 'forms';
             createForm( url );
         });
 
@@ -24,13 +24,13 @@
 
         $('#get_entries_button').click(function () {
             formId = $('#form_id').val();
-            var url = apiVars['root_url'] + 'forms/' + formId +  '/entries?_gf_json_nonce=' + apiVars['nonce'];
+            var url = apiVars['root_url'] + 'forms/' + formId +  '/entries';
             getEntries(url);
         });
 
         $('#filter_entries_button').click(function () {
             formId = $('#form_id').val();
-            var url = apiVars['root_url'] + 'forms/' + formId +  '/entries?_gf_json_nonce=' + apiVars['nonce'];
+            var url = apiVars['root_url'] + 'forms/' + formId +  '/entries';
 
             var search = {
                 field_filters : [
@@ -41,13 +41,13 @@
                     }
                 ]
             };
-            url += '&search=' + JSON.stringify(search);
+            url += '?search=' + JSON.stringify(search);
             getEntries(url);
         });
 
         $('#get_results_button').click(function () {
             formId = $('#form_id').val();
-            var url = apiVars['root_url'] + 'forms/' + formId +  '/results?_gf_json_nonce=' + apiVars['nonce'];
+            var url = apiVars['root_url'] + 'forms/' + formId +  '/results';
             getResults(url);
         });
 
@@ -55,14 +55,21 @@
 
     function createForm(url){
         var formJSON = $('#sample_form').val();
+		var form = JSON.parse( formJSON );
         $.ajax({
             url: url,
             type: 'POST',
-            data: formJSON
+            data: form,
+			//contentType: "application/json",
+			beforeSend: function (xhr, opts) {
+				$sending.show();
+				xhr.setRequestHeader('X-WP-Nonce', apiVars['nonce'] );
+			}
         })
         .done(function (data, textStatus, xhr) {
-            // The response contains an array of Form IDs.
-            $('#form_id').val(data.response[0]);
+			$sending.hide();
+            // The response contains a Form ID.
+            $('#form_id').val(data);
             $('#demo_step_1').hide();
             $('#demo_step_2').show();
         })
@@ -85,13 +92,15 @@
             url: url,
             type: 'POST',
             data: JSON.stringify(data),
+			contentType: "application/json",
             beforeSend: function (xhr, opts) {
                 $sending.show();
+				xhr.setRequestHeader('X-WP-Nonce', apiVars['nonce'] );
             }
         })
         .done(function (data, textStatus, xhr) {
             $sending.hide();
-            var response = JSON.stringify(data.response, null, '\t');
+            var response = JSON.stringify(data, null, '\t');
             $results.val(response);
         })
     }
@@ -102,11 +111,12 @@
             type: 'GET',
             beforeSend: function (xhr, opts) {
                 $sending.show();
+				xhr.setRequestHeader('X-WP-Nonce', apiVars['nonce'] );
             }
         })
         .done(function (data, textStatus, xhr) {
             $sending.hide();
-            var response = JSON.stringify(data.response, null, '\t');
+            var response = JSON.stringify(data, null, '\t');
             $results.val(response);
         })
     }
@@ -117,11 +127,12 @@
             type: 'GET',
             beforeSend: function (xhr, opts) {
                 $sending.show();
+				xhr.setRequestHeader('X-WP-Nonce', apiVars['nonce'] );
             }
         })
         .done(function (data, textStatus, xhr) {
             $sending.hide();
-            var response = JSON.stringify(data.response, null, '\t');
+            var response = JSON.stringify(data, null, '\t');
             $results.val(response);
         })
     }
