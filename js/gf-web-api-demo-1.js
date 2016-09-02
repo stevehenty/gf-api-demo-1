@@ -12,25 +12,25 @@
 
 
         $('#create_form_button').click(function () {
-            url = apiVars['root_url'] + 'forms';
+            url = apiVars['root_url'] + 'forms?_wpnonce=' + apiVars['nonce'];
             createForm( url );
         });
 
         $('#submit_button').click(function () {
             formId = $('#form_id').val();
-            var url = apiVars['root_url'] + 'forms/' + formId +  '/submissions';
+            var url = apiVars['root_url'] + 'forms/' + formId +  '/submissions?_wpnonce=' + apiVars['nonce'];
             submitForm( url );
         });
 
         $('#get_entries_button').click(function () {
             formId = $('#form_id').val();
-            var url = apiVars['root_url'] + 'forms/' + formId +  '/entries';
+            var url = apiVars['root_url'] + 'forms/' + formId +  '/entries?_wpnonce=' + apiVars['nonce'];
             getEntries(url);
         });
 
         $('#filter_entries_button').click(function () {
             formId = $('#form_id').val();
-            var url = apiVars['root_url'] + 'forms/' + formId +  '/entries';
+            var url = apiVars['root_url'] + 'forms/' + formId +  '/entries?_wpnonce=' + apiVars['nonce'];
 
             var search = {
                 field_filters : [
@@ -41,13 +41,13 @@
                     }
                 ]
             };
-            url += '?search=' + JSON.stringify(search);
+            url += '&search=' + JSON.stringify(search);
             getEntries(url);
         });
 
         $('#get_results_button').click(function () {
             formId = $('#form_id').val();
-            var url = apiVars['root_url'] + 'forms/' + formId +  '/results';
+            var url = apiVars['root_url'] + 'forms/' + formId +  '/results?_wpnonce=' + apiVars['nonce'];
             getResults(url);
         });
 
@@ -60,10 +60,8 @@
             url: url,
             type: 'POST',
             data: form,
-			//contentType: "application/json",
 			beforeSend: function (xhr, opts) {
 				$sending.show();
-				xhr.setRequestHeader('X-WP-Nonce', apiVars['nonce'] );
 			}
         })
         .done(function (data, textStatus, xhr) {
@@ -95,7 +93,6 @@
 			contentType: "application/json",
             beforeSend: function (xhr, opts) {
                 $sending.show();
-				xhr.setRequestHeader('X-WP-Nonce', apiVars['nonce'] );
             }
         })
         .done(function (data, textStatus, xhr) {
@@ -111,7 +108,6 @@
             type: 'GET',
             beforeSend: function (xhr, opts) {
                 $sending.show();
-				xhr.setRequestHeader('X-WP-Nonce', apiVars['nonce'] );
             }
         })
         .done(function (data, textStatus, xhr) {
@@ -127,7 +123,6 @@
             type: 'GET',
             beforeSend: function (xhr, opts) {
                 $sending.show();
-				xhr.setRequestHeader('X-WP-Nonce', apiVars['nonce'] );
             }
         })
         .done(function (data, textStatus, xhr) {
