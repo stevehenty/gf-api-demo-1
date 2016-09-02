@@ -82,10 +82,10 @@ class GF_Web_Api_Demo_1 extends GFAddOn {
 				<input id="input_3_4" type="radio" class="input_3" name="input_3" value="Just saying hello"/>
 				<label for="input_3_4">I'm an old friend</label><br/>
 				<label for="input_4">Message</label><br/>
-				<textarea id="input_4" name="input_4"></textarea>
+				<textarea id="input_4" name="input_4"></textarea><br/>
+				<input name="input_5" type="file" />
 			</form>
 			<div>
-
 				<button id="submit_button" class="button button-primary button-large">Submit Form</button>
 
 				<button id="get_entries_button" class="button button-primary button-large">Show Latest Entries

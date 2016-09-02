@@ -55,11 +55,11 @@
 
     function createForm(url){
         var formJSON = $('#sample_form').val();
-		var form = JSON.parse( formJSON );
         $.ajax({
             url: url,
             type: 'POST',
-            data: form,
+            data: formJSON,
+			contentType: "application/json",
 			beforeSend: function (xhr, opts) {
 				$sending.show();
 			}
@@ -73,34 +73,24 @@
         })
     }
 
-    function submitForm(url){
+	function submitForm(url){
+		var form = document.getElementById('gf_web_api_demo_form');
+		var fd = new FormData(form);
+		//fd.append( 'file', form.files[0] );
 
-        var inputValues = {
-            input_1: $('#input_1').val(),
-            input_2: $('#input_2').val(),
-            input_3: $('.input_3:checked').val(),
-            input_4: $('#input_4').val()
-        };
-
-        var data = {
-            input_values: inputValues
-        };
-
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: JSON.stringify(data),
-			contentType: "application/json",
-            beforeSend: function (xhr, opts) {
-                $sending.show();
-            }
-        })
-        .done(function (data, textStatus, xhr) {
-            $sending.hide();
-            var response = JSON.stringify(data, null, '\t');
-            $results.val(response);
-        })
-    }
+		$.ajax({
+			url: url,
+			data: fd,
+			processData: false,
+			contentType: false,
+			type: 'POST',
+			success: function(data){
+				$sending.hide();
+				var response = JSON.stringify(data, null, '\t');
+				$results.val(response);
+			}
+		});
+	}
 
     function getEntries(url){
         $.ajax({

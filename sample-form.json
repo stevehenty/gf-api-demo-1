@@ -18,11 +18,12 @@
       "size": "medium",
       "errorMessage": "",
       "inputs": null,
-      "formId": 63,
-      "pageNumber": 1,
+      "formId": 49,
       "choices": "",
       "conditionalLogic": "",
-      "displayOnly": ""
+      "displayOnly": "",
+      "enablePrice": "",
+      "inputType": ""
     },
     {
       "type": "email",
@@ -33,11 +34,12 @@
       "size": "medium",
       "errorMessage": "",
       "inputs": null,
-      "formId": 63,
-      "pageNumber": 1,
+      "formId": 49,
       "choices": "",
       "conditionalLogic": "",
-      "displayOnly": ""
+      "displayOnly": "",
+      "enablePrice": "",
+      "inputType": ""
     },
     {
       "type": "radio",
@@ -86,10 +88,11 @@
       "inputMask": false,
       "inputMaskValue": "",
       "allowsPrepopulate": false,
-      "formId": 63,
-      "pageNumber": 1,
+      "formId": 49,
       "conditionalLogic": "",
-      "displayOnly": ""
+      "displayOnly": "",
+      "enablePrice": "",
+      "inputType": ""
     },
     {
       "type": "textarea",
@@ -100,8 +103,7 @@
       "size": "medium",
       "errorMessage": "",
       "inputs": null,
-      "formId": 63,
-      "pageNumber": 1,
+      "formId": 49,
       "choices": "",
       "conditionalLogic": "",
       "displayOnly": "",
@@ -114,7 +116,48 @@
       "displayAllCategories": false,
       "inputMask": false,
       "inputMaskValue": "",
-      "allowsPrepopulate": false
+      "allowsPrepopulate": false,
+      "enablePrice": "",
+      "inputType": ""
+    },
+    {
+      "type": "fileupload",
+      "id": 5,
+      "label": "File",
+      "adminLabel": "",
+      "isRequired": false,
+      "size": "medium",
+      "errorMessage": "",
+      "inputs": null,
+      "formId": 49,
+      "description": "",
+      "allowsPrepopulate": false,
+      "inputMask": false,
+      "inputMaskValue": "",
+      "inputType": "",
+      "labelPlacement": "",
+      "descriptionPlacement": "",
+      "subLabelPlacement": "",
+      "placeholder": "",
+      "cssClass": "",
+      "inputName": "",
+      "adminOnly": false,
+      "noDuplicates": false,
+      "defaultValue": "",
+      "choices": "",
+      "conditionalLogic": "",
+      "maxFileSize": "",
+      "maxFiles": "",
+      "multipleFiles": false,
+      "allowedExtensions": "",
+      "failed_validation": "",
+      "productField": "",
+      "calculationFormula": "",
+      "calculationRounding": "",
+      "enableCalculation": "",
+      "disableQuantity": false,
+      "displayAllCategories": false,
+      "useRichTextEditor": false
     }
   ],
   "useCurrentUserAsAuthor": true,
@@ -125,29 +168,6 @@
   "lastPageButton": null,
   "pagination": null,
   "firstPageCssClass": null,
-  "notifications": {
-    "54e1c8d63ca49": {
-      "id": "54e1c8d63ca49",
-      "to": "{admin_email}",
-      "name": "Admin Notification",
-      "event": "form_submission",
-      "toType": "email",
-      "subject": "New submission from {form_title}",
-      "message": "{all_fields}"
-    }
-  },
-  "confirmations": {
-    "54e1c8d63ccb2": {
-      "id": "54e1c8d63ccb2",
-      "name": "Default Confirmation",
-      "isDefault": true,
-      "type": "message",
-      "message": "Thanks for contacting us! We will get in touch with you shortly.",
-      "url": "",
-      "pageId": "",
-      "queryString": ""
-    }
-  },
   "subLabelPlacement": "below",
   "cssClass": "",
   "enableHoneypot": "",
@@ -178,5 +198,29 @@
   "requireLoginMessage": "",
   "is_active": "1",
   "date_created": "2015-02-16 14:05:37",
-  "is_trash": "0"
+  "is_trash": "0",
+  "id": 49,
+  "confirmations": [
+    {
+      "id": "54e1c8d63ccb2",
+      "name": "Default Confirmation",
+      "isDefault": true,
+      "type": "message",
+      "message": "Thanks for contacting us! We will get in touch with you shortly.",
+      "url": "",
+      "pageId": "",
+      "queryString": ""
+    }
+  ],
+  "notifications": [
+    {
+      "id": "54e1c8d63ca49",
+      "to": "{admin_email}",
+      "name": "Admin Notification",
+      "event": "form_submission",
+      "toType": "email",
+      "subject": "New submission from {form_title}",
+      "message": "{all_fields}"
+    }
+  ]
 }
